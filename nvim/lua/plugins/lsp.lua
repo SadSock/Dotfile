@@ -15,6 +15,7 @@ return{
 	config = function()
 	    local lspconfig = require('lspconfig')
 	    lspconfig.clangd.setup {}
+	    lspconfig.bashls.setup{}
 	    lspconfig.pylsp.setup{
 		settings = {
 		    pylsp = {
