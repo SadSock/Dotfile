@@ -44,7 +44,6 @@ vim.opt.ignorecase = true
 vim.opt.inccommand = "nosplit"
 vim.opt.incsearch = true
 vim.opt.infercase = true
-
 --
 
 vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
@@ -148,27 +147,21 @@ wk.add(
 
 -- buffers
 wk.add(
-
 {
     { "<leader>bb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Switch Buffers" },
-  }
-
+}
 )
+
 -- search
 wk.add(
 {
     { '<leader>s"', "<cmd>Telescope registers<cr>", desc = "Registers" },
-  }
-
-)
-wk.add(
-{
     { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
     { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
     { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
     { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
     { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-    { "<leader>sS", "<cmd>telescope lsp_dynamic_workspace_symbols", desc = "Goto Symbol (Workspace)" },
+    { "<leader>sS", "<cmd>Telescope lsp_dynamic_workspace_symbols", desc = "Goto Symbol (Workspace)" },
     { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
     { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
     { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
@@ -177,19 +170,20 @@ wk.add(
     { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
     { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
     { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-    { "<leader>ss", "<cmd>telescope lsp_document_symbols<cr>", desc = "Goto Symbol" },
+    { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbol" },
   }
 )
 
 wk.add(
 {
     { "K", vim.lsp.buf.hover, desc = "Hover" },
-    { "gD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
-    { "gI", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "Goto Implementation" },
-    { "gK", vim.lsp.buf.signature_help, desc = "Signature Help" },
-    { "gd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, desc = "Goto Definition" },
-    { "gr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
-    { "gy", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
+    { "grD", vim.lsp.buf.declaration, desc = "Goto Declaration" },
+    { "gri", function() require("telescope.builtin").lsp_implementations({ reuse_win = true }) end, desc = "Goto Implementation" },
+    { "grk", vim.lsp.buf.signature_help, desc = "Signature Help" },
+    { "grd", function() require("telescope.builtin").lsp_definitions({ reuse_win = true }) end, desc = "Goto Definition" },
+    { "grr", "<cmd>Telescope lsp_references<cr>", desc = "References" },
+    { "gry", function() require("telescope.builtin").lsp_type_definitions({ reuse_win = true }) end, desc = "Goto T[y]pe Definition" },
+    { "gO", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbol" },
   }
 )
 
@@ -198,15 +192,10 @@ wk.add(
     { "<c-k>", vim.lsp.buf.signature_help, desc = "Signature Help", mode = "i" },
   }
 )
+
 wk.add(
 {
     { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action", mode = { "n", "v" } },
-  }
-)
-
-wk.add(
-
-{
     { "<leader>cA", function()
           vim.lsp.buf.code_action({
             context = {
@@ -219,15 +208,10 @@ wk.add(
         end, desc = "Source Action" },
     { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
     { "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
-  }
-  )
-
-wk.add(
-{
     { "<leader>cS", "<cmd>telescope lsp_dynamic_workspace_symbols", desc = "Goto Symbol (Workspace)" },
     { "<leader>cs", "<cmd>telescope lsp_document_symbols<cr>", desc = "Goto Symbol" },
   }
-)
+  )
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'cpp',
