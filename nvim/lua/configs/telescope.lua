@@ -32,8 +32,8 @@ return function()
 				vertical = {
 					mirror = false,
 				},
-				width = 0.85,
-				height = 0.92,
+				width = 0.95,
+				height = 0.95,
 				preview_cutoff = 120,
 			},
 			file_previewer = require("telescope.previewers").vim_buffer_cat.new,

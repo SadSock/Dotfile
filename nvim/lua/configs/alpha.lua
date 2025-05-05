@@ -40,7 +40,7 @@ return function()
 
 	local leader = " "
 	dashboard.section.buttons.val = {
-		button("space f c", " Themes Change", leader, nil, {
+		button("space t c", " Themes Change", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -48,7 +48,7 @@ return function()
 				require("telescope.builtin").colorscheme()
 			end,
 		}),
-		button("space f r", "󰋚 Recent File", leader, nil, {
+		button("space t r", "󰋚 Recent File", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -56,7 +56,7 @@ return function()
 				require("telescope.builtin").oldfiles()
 			end,
 		}),
-		button("space f m", " Marks", leader, nil, {
+		button("space t m", " Marks", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -64,7 +64,7 @@ return function()
 				require("telescope.builtin").marks()
 			end,
 		}),
-		button("space f f", "󰈞 File find", leader, nil, {
+		button("space t f", "󰈞 File find", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,
@@ -72,7 +72,7 @@ return function()
 				require("telescope.builtin").find_files()
 			end,
 		}),
-		button("space f w", " Word find", leader, nil, {
+		button("space t w", " Word find", leader, nil, {
 			noremap = true,
 			silent = true,
 			nowait = true,

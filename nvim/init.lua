@@ -106,21 +106,26 @@ wk.add(
       { "<leader>b", group = "buffer" },
       { "<leader>c", group = "code" },
       { "<leader>f", group = "file/find" },
+      { "<leader>t", group = "telescope" },
       { "<leader>g", group = "git" },
       { "<leader>gh", group = "hunks" },
       { "<leader>q", group = "quit/session" },
       { "<leader>s", group = "search" },
       { "<leader>u", group = "ui" },
       { "<leader>w", group = "windows" },
-      { "<leader>x", group = "diagnostics/quickfix" },
+      { "<leader>p", group = "plugin" },
       { "[", group = "prev" },
       { "]", group = "next" },
-      { "g", group = "goto" },
-      { "gs", group = "surround" },
+      { "g", group = "git/goto" },
     },
   }
 )
 
+wk.add(
+{
+    { "<leader>pd", "<cmd>DiffviewOpen<cr>", desc = "Diff View" },
+  }
+)
 
 wk.add(
 {
@@ -134,14 +139,14 @@ wk.add(
 -- find
 wk.add(
 {
-    { "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
-    { "<leader>fb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
-    { "<leader>fc", "<cmd>Telescope colorscheme<cr>", desc = "Change Colorscheme" },
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
-    { "<leader>fg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
-    { "<leader>fn", "<cmd>enew<cr>", desc = "New File" },
-    { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
-    { "<leader>fw", "<cmd>Telescope live_grep_args<cr>", desc = "Grep Args" },
+    { "<leader>tm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+    { "<leader>tb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
+    { "<leader>tc", "<cmd>Telescope colorscheme<cr>", desc = "Change Colorscheme" },
+    { "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+    { "<leader>tg", "<cmd>Telescope git_files<cr>", desc = "Find Files (git-files)" },
+    { "<leader>tr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
+    { "<leader>tw", "<cmd>Telescope live_grep_args<cr>", desc = "Grep Args" },
+    { "<leader>td", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
     }
 )
 
