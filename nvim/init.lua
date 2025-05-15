@@ -17,11 +17,11 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- disable command history list
-vim.keymap.set('n', 'q:', '<nop>', { noremap = true })
+vim.keymap.set({'n','v','s'}, 'q:', '<nop>', { noremap = true })
 
 -- 禁用 command window
-vim.keymap.set('n', 'q/', '<nop>', { noremap = true })
-vim.keymap.set('n', 'q?', '<nop>', { noremap = true })
+vim.keymap.set({'n','v','s'}, 'q/', '<nop>', { noremap = true })
+vim.keymap.set({'n','v','s'}, 'q?', '<nop>', { noremap = true })
 
 
 -- show line number
@@ -46,7 +46,7 @@ vim.opt.incsearch = true
 vim.opt.infercase = true
 --
 
-vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+-- vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
 
 
 -- Please do NOT set `updatetime` to above 500, otherwise most plugins may not function correctly
