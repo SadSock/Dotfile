@@ -157,28 +157,6 @@ wk.add(
 }
 )
 
--- search
-wk.add(
-{
-    { '<leader>s"', "<cmd>Telescope registers<cr>", desc = "Registers" },
-    { "<leader>sC", "<cmd>Telescope commands<cr>", desc = "Commands" },
-    { "<leader>sD", "<cmd>Telescope diagnostics<cr>", desc = "Workspace diagnostics" },
-    { "<leader>sH", "<cmd>Telescope highlights<cr>", desc = "Search Highlight Groups" },
-    { "<leader>sM", "<cmd>Telescope man_pages<cr>", desc = "Man Pages" },
-    { "<leader>sR", "<cmd>Telescope resume<cr>", desc = "Resume" },
-    { "<leader>sS", "<cmd>Telescope lsp_dynamic_workspace_symbols", desc = "Goto Symbol (Workspace)" },
-    { "<leader>sa", "<cmd>Telescope autocommands<cr>", desc = "Auto Commands" },
-    { "<leader>sb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Buffer" },
-    { "<leader>sc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-    { "<leader>sd", "<cmd>Telescope diagnostics bufnr=0<cr>", desc = "Document diagnostics" },
-    { "<leader>sg", "<cmd>Telescope live_grep_args<cr>", desc = "Grep Args" },
-    { "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Help Pages" },
-    { "<leader>sk", "<cmd>Telescope keymaps<cr>", desc = "Key Maps" },
-    { "<leader>so", "<cmd>Telescope vim_options<cr>", desc = "Options" },
-    { "<leader>ss", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbol" },
-  }
-)
-
 wk.add(
 {
     { "K", vim.lsp.buf.hover, desc = "Hover" },
@@ -234,6 +212,48 @@ wk.add({
 	}
     )
 
+local hydra = require("hydra")
+
+multi_hydra = hydra({
+    -- string? only used in auto-generated hint
+    name = "Multiple Cursor",
+
+    mode = {"n", "v", "x"},
+       config = {
+          hint = {
+            type = "window",
+	    position = "bottom",
+            offset = 0,
+            float_opts = {
+		border = "single",
+            },
+            show_name = true,
+            hide_on_load = false,
+            funcs = {},
+	  }
+	},
+
+    heads = {
+
+      { "n", function() require("multicursor-nvim").matchAddCursor(1) end , { desc = "match next", exit = false } },
+    },
+})
+
+
+-- wk.add({
+--   mode = { "n", "v", "x"},
+--   {"<leader>m", function() multi_hydra:activate() end,  desc = "Multiple Cursor"},
+-- })
+
+-- mc = require("multicursor-nvim")
+-- mc.onSafeState(function(details)
+--     if mc.hasCursors() then
+--       multi_hydra:activate()
+--     else
+--       multi_hydra:exit()
+--     end
+-- end)
+--
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'cpp',
