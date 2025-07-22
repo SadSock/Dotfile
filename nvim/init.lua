@@ -139,7 +139,7 @@ wk.add(
 -- find
 wk.add(
 {
-    { "<leader>tm", "<cmd>Telescope marks<cr>", desc = "Jump to Mark" },
+    { "<leader>tm", "<cmd>Telescope  bookmarks list<cr>", desc = "Bookmarks List" },
     { "<leader>tb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
     { "<leader>tc", "<cmd>Telescope colorscheme<cr>", desc = "Change Colorscheme" },
     { "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "Find File" },
