@@ -36,8 +36,10 @@ vim.wo.linebreak = true
 vim.wo.list = false -- extra option I set in addition to the ones in your question
 
 -- disable auto fold
+vim.opt.foldlevel = 99      -- 默认展开所有折叠
 vim.opt.foldlevelstart = 99 -- 0 to close all folds upon opening file
 vim.opt.foldenable = true
+vim.opt.foldmethod = "syntax"
 
 --
 vim.opt.ignorecase = true
@@ -295,5 +297,15 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = "*.inc",
   callback = function()
     vim.bo.filetype = "cpp"
+  end
+})
+
+
+-- 为 Python 文件特别设置缩进折叠
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    vim.opt_local.foldmethod = "indent" -- 使用缩进折叠
+    vim.opt_local.foldlevel = 99 -- 确保默认展开
   end
 })
