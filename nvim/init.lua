@@ -140,7 +140,7 @@ wk.add(
 wk.add(
 {
     { "<leader>pd", "<cmd>DiffviewOpen<cr>", desc = "Diff View" },
-  }
+}
 )
 
 wk.add(
@@ -155,7 +155,7 @@ wk.add(
 -- find
 wk.add(
 {
-    { "<leader>tm", "<cmd>Telescope  bookmarks list<cr>", desc = "Bookmarks List" },
+    { "<leader>tm", "<cmd>Telescope recall<CR>", desc = "Recall" },
     { "<leader>tb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
     { "<leader>tc", "<cmd>Telescope colorscheme<cr>", desc = "Change Colorscheme" },
     { "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "Find File" },
@@ -163,7 +163,7 @@ wk.add(
     { "<leader>tr", "<cmd>Telescope oldfiles<cr>", desc = "Open Recent File" },
     { "<leader>tw", "<cmd>Telescope live_grep_args<cr>", desc = "Grep Args" },
     { "<leader>td", "<cmd>Telescope diagnostics<cr>", desc = "Diagnostics" },
-    }
+  }
 )
 
 -- buffers
@@ -227,49 +227,6 @@ wk.add({
             "<cmd>Gitsigns diffthis HEAD<cr>", desc = "Diff",}
 	}
     )
-
-local hydra = require("hydra")
-
-multi_hydra = hydra({
-    -- string? only used in auto-generated hint
-    name = "Multiple Cursor",
-
-    mode = {"n", "v", "x"},
-       config = {
-          hint = {
-            type = "window",
-	    position = "bottom",
-            offset = 0,
-            float_opts = {
-		border = "single",
-            },
-            show_name = true,
-            hide_on_load = false,
-            funcs = {},
-	  }
-	},
-
-    heads = {
-
-      { "n", function() require("multicursor-nvim").matchAddCursor(1) end , { desc = "match next", exit = false } },
-    },
-})
-
-
--- wk.add({
---   mode = { "n", "v", "x"},
---   {"<leader>m", function() multi_hydra:activate() end,  desc = "Multiple Cursor"},
--- })
-
--- mc = require("multicursor-nvim")
--- mc.onSafeState(function(details)
---     if mc.hasCursors() then
---       multi_hydra:activate()
---     else
---       multi_hydra:exit()
---     end
--- end)
---
 
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'cpp',
