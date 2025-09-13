@@ -1,4 +1,5 @@
 format = """
+$conda\
 $username\
 $localip\
 $directory\
@@ -67,6 +68,6 @@ format = "[$virtualenv]($style)"
 style = "bright-black"
 
 [conda]
-format = "[$environment](dimmed green)"
+format = "[$environment](bright-green) "
 disabled = false
 ignore_base = false
