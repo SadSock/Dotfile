@@ -6,7 +6,7 @@ return {
     config = true,
     opts = {
         keywords = {
-            ANCHOR = { icon = "🌀", color = "hint", alt = { "SINGULARITY", "WORMHOLE" } },
+            ANCHOR = { icon = "🌀", color = "hint", alt = { "SINGULARITY", "WORMHOLE" , "MARK"} },
         }
     }
   },
