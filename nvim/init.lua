@@ -104,7 +104,8 @@ vim.lsp.config('pylsp', {
 })
 
 vim.lsp.enable('clangd')
-vim.lsp.enable('pylsp')
+-- vim.lsp.enable('pylsp')
+vim.lsp.enable('pyright')
 vim.lsp.enable('bashls')
 
 
