@@ -1,0 +1,34 @@
+local gh = function(repo)
+  return "https://github.com/" .. repo
+end
+
+return {
+  gh("goolord/alpha-nvim"),
+  gh("hrsh7th/nvim-cmp"),
+  gh("hrsh7th/cmp-nvim-lsp"),
+  gh("hrsh7th/cmp-nvim-lua"),
+  gh("hrsh7th/cmp-path"),
+  gh("dgagn/diagflow.nvim"),
+  gh("sindrets/diffview.nvim"),
+  gh("lewis6991/gitsigns.nvim"),
+  gh("nvimtools/hydra.nvim"),
+  gh("echasnovski/mini.indentscope"),
+  gh("onsails/lspkind.nvim"),
+  gh("meuter/lualine-so-fancy.nvim"),
+  gh("nvim-lualine/lualine.nvim"),
+  gh("jake-stewart/multicursor.nvim"),
+  gh("MunifTanjim/nui.nvim"),
+  gh("neovim/nvim-lspconfig"),
+  gh("SmiteshP/nvim-navbuddy"),
+  gh("SmiteshP/nvim-navic"),
+  gh("nvim-tree/nvim-web-devicons"),
+  gh("navarasu/onedark.nvim"),
+  gh("nvim-lua/plenary.nvim"),
+  gh("nvim-telescope/telescope-live-grep-args.nvim"),
+  gh("nvim-telescope/telescope.nvim"),
+  gh("folke/todo-comments.nvim"),
+  gh("folke/tokyonight.nvim"),
+  gh("cappyzawa/trim.nvim"),
+  gh("RRethy/vim-illuminate"),
+  gh("folke/which-key.nvim"),
+}

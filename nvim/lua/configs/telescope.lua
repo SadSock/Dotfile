@@ -1,5 +1,4 @@
 return function()
-	local icons = { ui = require("utils.icons").get("ui", true) }
 	local lga_actions = require("telescope-live-grep-args.actions")
 
 	require("telescope").setup({
@@ -13,8 +12,6 @@ return function()
 				"--smart-case",
 			},
 			initial_mode = "insert",
-			prompt_prefix = " " .. icons.ui.Telescope .. " ",
-			selection_caret = icons.ui.ChevronRight,
 			scroll_strategy = "limit",
 			results_title = false,
 			layout_strategy = "horizontal",
@@ -44,12 +41,6 @@ return function()
 			buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
 		},
 		extensions = {
-			frecency = {
-				use_sqlite = false,
-				show_scores = true,
-				show_unindexed = true,
-				ignore_patterns = { "*.git/*", "*/tmp/*" },
-			},
 			live_grep_args = {
 				auto_quoting = true, -- enable/disable auto-quoting
 				-- define mappings, e.g.

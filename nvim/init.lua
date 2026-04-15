@@ -1,29 +1,21 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system({
-	"git",
-	"clone",
-	"--filter=blob:none",
-	"https://github.com/folke/lazy.nvim.git",
-	"--branch=stable", -- latest stable release
-	lazypath,
-    })
-end
-vim.opt.rtp:prepend(lazypath)
-
 -- set leader key
 vim.api.nvim_set_keymap('', '<Space>', '<Nop>', { noremap = true, silent = true })
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- disable command history list
-vim.keymap.set({'n','v','s'}, 'q:', '<nop>', { noremap = true })
+vim.keymap.set({'n','v','s'}, 'q:', ':', { noremap = true })
 
 -- 禁用 command window
 vim.keymap.set({'n','v','s'}, 'q/', '<nop>', { noremap = true })
 vim.keymap.set({'n','v','s'}, 'q?', '<nop>', { noremap = true })
 
 
+-- vim.keymap.set('n', 'q:', ':')
+-- vim.keymap.set('n', 'q/', '<nop>')
+-- vim.keymap.set('n', 'q?', '<nop>')
+
+--
 -- show line number
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -54,38 +46,23 @@ vim.opt.infercase = true
 -- Please do NOT set `updatetime` to above 500, otherwise most plugins may not function correctly
 -- vim.opt.updatetime = 200
 
+vim.opt.packpath:append(vim.fn.stdpath("data") .. "/site")
 
-require("lazy").setup({
-    spec = {
-	{ import = "plugins" },
-    },
-    defaults = {
-	-- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
-	-- If you know what you're doing, you can set this to `true` to have all your custom plugins lazy-loaded by default.
-	lazy = false,
-	-- It's recommended to leave version=false for now, since a lot the plugin that support versioning,
-	-- have outdated releases, which may break your Neovim install.
-	version = false, -- always use the latest git commit
-	-- version = "*", -- try installing the latest stable version for plugins that support semver
-    },
-    install = {  missing = true,colorscheme = { "onedark" } },
-    checker = { enabled = false }, -- automatically check for plugin updates
-    performance = {
-	rtp = {
-	    -- disable some rtp plugins
-	    disabled_plugins = {
-		"gzip",
-		--"matchit",
-		--"matchparen",
-		-- "netrwPlugin",
-		"tarPlugin",
-		"tohtml",
-		"tutor",
-		"zipPlugin",
-	    },
-	},
-    },
-})
+vim.pack.add(require("plugins"))
+require("configs.theme")()
+require("configs.which_key")()
+require("configs.trim")()
+require("configs.lsp")()
+require("configs.diffview")()
+require("configs.git")()
+require("configs.indent")()
+require("configs.telescope")()
+require("configs.cmp")()
+require("configs.lualine")()
+require("configs.todo_comments")()
+require("configs.illuminate")()
+require("configs.multicursor")()
+require("configs.alpha")()
 
 
 -- lsp
@@ -103,17 +80,31 @@ vim.lsp.config('pylsp', {
 		}
 })
 
+
+vim.lsp.config('rust-analyzer', {
+  cmd = { 'rust-analyzer' },
+  filetypes = { 'rust' },
+  root_patterns = { 'Cargo.toml', '.git' },
+  settings = {
+    ['rust-analyzer'] = {
+      checkOnSave = true,
+      check = {
+        command = "clippy",
+      },
+    },
+  },
+})
+
 vim.lsp.enable('clangd')
 -- vim.lsp.enable('pylsp')
 vim.lsp.enable('pyright')
 vim.lsp.enable('bashls')
-
-
-
--- select theme
-vim.cmd.colorscheme('onedark')
+vim.lsp.enable('rust-analyzer')
 
 local wk = require("which-key")
+vim.keymap.set("n", "<leader>?", function()
+  wk.show({ global = false })
+end, { desc = "Buffer Local Keymaps (which-key)" })
 
 wk.add(
 {
@@ -156,7 +147,7 @@ wk.add(
 -- find
 wk.add(
 {
-    { "<leader>tm", "<cmd>Telescope recall<CR>", desc = "Recall" },
+    { "<leader>tm", "<cmd>Telescope marks<CR>", desc = "Marks" },
     { "<leader>tb", "<cmd>Telescope buffers sort_mru=true sort_lastused=true<cr>", desc = "Buffers" },
     { "<leader>tc", "<cmd>Telescope colorscheme<cr>", desc = "Change Colorscheme" },
     { "<leader>tf", "<cmd>Telescope find_files<cr>", desc = "Find File" },
@@ -201,10 +192,10 @@ wk.add(
             },
      })
         end, desc = "Source Action" },
-    { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+    { "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", desc = "Lsp Health" },
     { "<leader>cr", vim.lsp.buf.rename, desc = "Rename" },
-    { "<leader>cS", "<cmd>telescope lsp_dynamic_workspace_symbols", desc = "Goto Symbol (Workspace)" },
-    { "<leader>cs", "<cmd>telescope lsp_document_symbols<cr>", desc = "Goto Symbol" },
+    { "<leader>cS", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Goto Symbol (Workspace)" },
+    { "<leader>cs", "<cmd>Telescope lsp_document_symbols<cr>", desc = "Goto Symbol" },
   }
   )
 

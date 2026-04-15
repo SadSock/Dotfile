@@ -1,4 +1,8 @@
 return function()
+	if vim.fn.argc() ~= 0 or vim.api.nvim_buf_get_name(0) ~= "" then
+		return
+	end
+
 	local dashboard = require("alpha.themes.dashboard")
 	require("utils").gen_alpha_hl()
 
@@ -84,8 +88,6 @@ return function()
 	dashboard.section.buttons.opts.hl = "AlphaButtons"
 
 	local function footer()
-		local stats = require("lazy").stats()
-		local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
 		return "   Have Fun with neovim"
 			.. "  󰀨 v"
 			.. vim.version().major
@@ -93,11 +95,6 @@ return function()
 			.. vim.version().minor
 			.. "."
 			.. vim.version().patch
-			.. "  󰂖 "
-			.. stats.count
-			.. " plugins in "
-			.. ms
-			.. "ms"
 	end
 
 	dashboard.section.footer.val = footer()
@@ -117,13 +114,5 @@ return function()
 		dashboard.section.footer,
 	}
 
-	require("utils").load_plugin("alpha", dashboard.opts)
-
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "LazyVimStarted",
-		callback = function()
-			dashboard.section.footer.val = footer()
-			pcall(vim.cmd.AlphaRedraw)
-		end,
-	})
+	require("alpha").setup(dashboard.opts)
 end
